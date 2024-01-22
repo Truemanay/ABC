@@ -1,0 +1,11 @@
+searchParameters:
+  projectPath: '../src/app/'
+  nodeTypes:
+    - 'TextInput'
+    - 'Pressable'
+    - 'Button'
+    - 'TouchableOpacity'
+  targetProp: 'accessibilityLabel'
+  includeSubtypes: true
+  outputFormat: 'text'
+  outputFile: './appStructure.txt'

@@ -1,0 +1,31 @@
+{
+  "name": "auto-bot-context",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Truemanay/ABC.git"
+  },
+  "author": "Truman Emmings",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Truemanay/ABC/issues"
+  },
+  "homepage": "https://github.com/Truemanay/ABC#readme",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-native": "^0.73.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.48",
+    "react": "^18.2.0",
+    "react-native": "^0.73.2"
+  },
+  "dependencies": {
+    "react-native-fs": "^2.20.0"
+  }
+}

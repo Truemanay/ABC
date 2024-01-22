@@ -1,14 +1,13 @@
-import { record, saveOrUpdateRecordItem } from '../../module/appStructure/recordStore';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, PressableProps } from 'react-native';
-import { _animateFuzzy } from '../functions';
-import { updateUserPath } from '../../module/trackUser/storeUserPath';
-import { tUserPath } from '../../module/trackUser/whitelist';
+import { Pressable, PressableProps, View } from 'react-native';
+import { useCallback, useEffect, useRef, useState } from "react";
+import { tUserPath } from './trackUser/whitelist';
+import { updateUserPath } from './trackUser/storeUserPath';
+import { saveOrUpdateRecordItem } from './appStructure/recordStore';
 
 type XYPressableProps = PressableProps & { currentState: any };
 
 export const AIPressable = ({ onPress, accessibilityLabel, currentState, ...props }: XYPressableProps) => {
-    const myRef = useRef(null);
+    const myRef = useRef<View>(null);
     // State to hold the previous value
     const [previousValue, setPreviousValue] = useState<any>(currentState);
     // State to determine if the button has been pressed
@@ -36,18 +35,9 @@ export const AIPressable = ({ onPress, accessibilityLabel, currentState, ...prop
     const myOnPress = useCallback(() => {
         if (onPress) {
             setIsPressed(true);
-            // setTimeout(() => {
             onPress();
-            // }, 1200);
-            // const myRecord = record.find(item => item.action === accessibilityLabel);
-            // _animateFuzzy(myRecord.x, myRecord.y);
         }
     }, [accessibilityLabel, currentState, onPress, previousValue]);
-
-    // if (onPress && accessibilityLabel) {
-
-    //     console.log('onPress:', accessibilityLabel);
-    // }
 
     const myOnLayout = useCallback(() => {
         if (myRef && myRef.current && accessibilityLabel) {

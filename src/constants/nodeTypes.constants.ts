@@ -3,4 +3,5 @@ export const NODE_TYPES = [
   "Pressable",
   "Button",
   "TouchableOpacity",
+  "ABPressable",
 ]

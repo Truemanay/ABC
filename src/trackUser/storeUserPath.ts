@@ -1,9 +1,9 @@
 import RNFS from "react-native-fs"
-import { tUserPath } from "./whitelist"
+// import { tUserPath } from "./whitelist"
 
-export const userPath: tUserPath[] = []
+export const userPath: any[] = []
 
-export const updateUserPath = (item: tUserPath): void => {
+export const updateUserPath = (item: any): void => {
   //   const index = record.findIndex((recordItem) => recordItem.action === item.action);
 
   //   if (index !== -1) {

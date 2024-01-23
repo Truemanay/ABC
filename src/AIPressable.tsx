@@ -1,10 +1,10 @@
 import { Pressable, PressableProps, View } from 'react-native';
 import { useCallback, useEffect, useRef, useState } from "react";
-// import { tUserPath } from './trackUser/whitelist';
+import { tUserPath } from './trackUser/whitelist';
 import { updateUserPath } from './trackUser/storeUserPath';
 import { saveOrUpdateRecordItem } from './appStructure/recordStore';
 
-export type ABPressableProps = PressableProps & { currentState: any; actionDescription: string };
+type ABPressableProps = PressableProps & { currentState: any; actionDescription: string };
 
 export const ABPressable = ({ onPress, actionDescription, accessibilityLabel, currentState, ...props }: ABPressableProps) => {
     const myRef = useRef<View>(null);
@@ -22,7 +22,7 @@ export const ABPressable = ({ onPress, actionDescription, accessibilityLabel, cu
             if (actionDescription) {
                 console.log('CURRENT:', currentState);
                 console.log('PREV:', previousValue);
-                const myPath: any = {
+                const myPath: tUserPath = {
                     actionName: actionDescription,
                     newState: currentState,
                     oldState: previousValue,
@@ -35,7 +35,6 @@ export const ABPressable = ({ onPress, actionDescription, accessibilityLabel, cu
     const myOnPress = useCallback(() => {
         if (onPress) {
             setIsPressed(true);
-            // @ts-ignore
             onPress();
         }
     }, [actionDescription, currentState, onPress, previousValue]);

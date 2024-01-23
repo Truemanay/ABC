@@ -4,9 +4,9 @@ import { tUserPath } from './trackUser/whitelist';
 import { updateUserPath } from './trackUser/storeUserPath';
 import { saveOrUpdateRecordItem } from './appStructure/recordStore';
 
-type XYPressableProps = PressableProps & { currentState: any };
+export type ABPressableProps = PressableProps & { currentState: any; actionDescription: string };
 
-export const AIPressable = ({ onPress, accessibilityLabel, currentState, ...props }: XYPressableProps) => {
+export const ABPressable = ({ onPress, actionDescription, accessibilityLabel, currentState, ...props }: ABPressableProps) => {
     const myRef = useRef<View>(null);
     // State to hold the previous value
     const [previousValue, setPreviousValue] = useState<any>(currentState);
@@ -19,36 +19,37 @@ export const AIPressable = ({ onPress, accessibilityLabel, currentState, ...prop
             setPreviousValue(currentState);
             setIsPressed(false);
 
-            if (accessibilityLabel) {
+            if (actionDescription) {
                 console.log('CURRENT:', currentState);
                 console.log('PREV:', previousValue);
                 const myPath: tUserPath = {
-                    actionName: accessibilityLabel,
+                    actionName: actionDescription,
                     newState: currentState,
                     oldState: previousValue,
                 }
                 updateUserPath(myPath);
             }
         }
-    }, [accessibilityLabel, currentState, isPressed, previousValue]);
+    }, [actionDescription, currentState, isPressed, previousValue]);
 
     const myOnPress = useCallback(() => {
         if (onPress) {
             setIsPressed(true);
+            // @ts-ignore
             onPress();
         }
-    }, [accessibilityLabel, currentState, onPress, previousValue]);
+    }, [actionDescription, currentState, onPress, previousValue]);
 
     const myOnLayout = useCallback(() => {
-        if (myRef && myRef.current && accessibilityLabel) {
+        if (myRef && myRef.current && actionDescription) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             myRef.current.measure((_x: any, _y: any, _width: any, _height: any, pageX: any, pageY: any) => {
                 console.log('tx:', pageX, 'ty:', pageY);
-                saveOrUpdateRecordItem({ action: accessibilityLabel, x: pageX, y: pageY });
+                saveOrUpdateRecordItem({ action: actionDescription, x: pageX, y: pageY });
                 // pageX and pageY give the position of the element relative to the whole screen
             });
         }
-    }, [accessibilityLabel]);
+    }, [actionDescription]);
 
-    return <Pressable onLayout={myOnLayout} onPress={myOnPress} accessibilityLabel={accessibilityLabel} ref={myRef} {...props} />;
+    return <Pressable onLayout={myOnLayout} onPress={myOnPress} accessibilityLabel={accessibilityLabel ?? actionDescription} ref={myRef} {...props} />;
 };

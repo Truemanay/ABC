@@ -1,4 +1,4 @@
-import RNFS from "react-native-fs"
+// import RNFS from "react-native-fs"
 // import { tUserPath } from "./whitelist"
 
 export const userPath: any[] = []
@@ -22,12 +22,12 @@ export const updateUserPath = (item: any): void => {
 // };
 
 const writeRecordToFile = (): void => {
-  const path = RNFS.DocumentDirectoryPath + "/userPath.json"
-  RNFS.writeFile(path, JSON.stringify(userPath, null, 2))
-    .then(() => {
-      console.log("Record saved to", path)
-    })
-    .catch((err) => {
-      console.error("Error writing the record to file:", err)
-    })
+  // const path = RNFS.DocumentDirectoryPath + "/userPath.json"
+  // RNFS.writeFile(path, JSON.stringify(userPath, null, 2))
+  //   .then(() => {
+  //     console.log("Record saved to", path)
+  //   })
+  //   .catch((err) => {
+  // console.error("Error writing the record to file:", err)
+  // })
 }

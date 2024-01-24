@@ -1,41 +1,45 @@
-import RNFS from "react-native-fs";
+import { writeFile } from "fs"
 
 export interface RecordItem {
-  action: string;
-  x: number;
-  y: number;
+  action: string
+  x: number
+  y: number
 }
 
 export const record: RecordItem[] = [
   { action: "test", x: 1, y: 1 },
   // ... other items can be initially added here if needed
-];
+]
 
 export const saveOrUpdateRecordItem = (item: RecordItem): void => {
-  const index = record.findIndex((recordItem) => recordItem.action === item.action);
+  const index = record.findIndex(
+    (recordItem) => recordItem.action === item.action
+  )
 
   if (index !== -1) {
     // Update existing item
-    record[index] = item;
+    record[index] = item
   } else {
     // Add new item
-    record.push(item);
+    record.push(item)
   }
 
-  writeRecordToFile();
-};
+  writeRecordToFile()
+}
 
-export const findRecordByAction = (actionToMatch: string): RecordItem | undefined => {
-  return record.find((item) => item.action === actionToMatch);
-};
+export const findRecordByAction = (
+  actionToMatch: string
+): RecordItem | undefined => {
+  return record.find((item) => item.action === actionToMatch)
+}
 
 const writeRecordToFile = (): void => {
-  const path = RNFS.DocumentDirectoryPath + "/record.json";
-  RNFS.writeFile(path, JSON.stringify(record, null, 2))
-    .then(() => {
-      // console.log("Record saved to", path);
-    })
-    .catch((err) => {
-      console.error("Error writing the record to file:", err);
-    });
-};
+  const path = "" + "/record.json"
+  // writeFile(path, JSON.stringify(record, null, 2))
+  //   .then(() => {
+  //     // console.log("Record saved to", path);
+  //   })
+  //   .catch((err) => {
+  //     console.error("Error writing the record to file:", err)
+  //   })
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { searchReactNodes } from "../appStructure/runNodeSearch"
+import { searchReactNodes } from "../lib/esm/index.js";
 
 console.log("Running app discovery...")
 

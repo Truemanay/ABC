@@ -13,10 +13,20 @@ export type InteractableItem = {
     pageX: number;
     pageY: number;
 }
+
+export type appStructureItem = {
+    screenName: string;
+    actions: string[];
+}
 export type InteractableLinks = Record<string, InteractableItem>;
 export const interactableLinks: InteractableLinks = {};
+export const appStructure: appStructureItem[] = [];
 
 export const ABContext: FC<ABContextProps> = ({ children }) => {
 
     return (<>{children}</>)
 };
+
+setTimeout(() => {
+    interactableLinks["testme"].press();
+}, 5000)
